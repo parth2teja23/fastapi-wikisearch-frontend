@@ -40,35 +40,47 @@ export default function ArticlePage() {
   }, [title]);
 
   if (isLoading)
-    return <div className="max-w-3xl mx-auto px-4 py-10">Loading...</div>;
+    return (
+      <main className="min-h-screen w-full px-4 py-10 flex items-center justify-center">
+        <div className="w-full max-w-3xl rounded-2xl border border-zinc-800 bg-zinc-900 p-8 text-center text-gray-300">
+          Loading...
+        </div>
+      </main>
+    );
   if (error || !article)
     return (
-      <div className="max-w-3xl mx-auto px-4 py-10 text-red-500">{error}</div>
+      <main className="min-h-screen w-full px-4 py-10 flex items-center justify-center">
+        <div className="w-full max-w-3xl rounded-2xl border border-red-900/60 bg-zinc-900 p-8 text-center text-red-400">
+          {error}
+        </div>
+      </main>
     );
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
-      <button
-        onClick={() => router.back()}
-        className="text-sm text-blue-600 hover:underline mb-6 block"
-      >
-        ← Back to results
-      </button>
+    <main className="min-h-screen w-full px-4 py-10 flex items-center justify-center">
+      <article className="w-full max-w-3xl rounded-2xl border border-zinc-800 bg-zinc-900 p-6 sm:p-8 shadow-xl">
+        <button
+          onClick={() => router.back()}
+          className="text-sm text-cyan-300 hover:text-cyan-200 hover:underline mb-6 block"
+        >
+          ← Back to results
+        </button>
 
-      <h1 className="text-3xl font-bold mb-2">{article.title}</h1>
+        <h1 className="text-3xl font-bold mb-2 text-white">{article.title}</h1>
 
-      <a
-        href={article.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-500 text-sm hover:underline mb-8 block"
-      >
-        View on Wikipedia →
-      </a>
+        <a
+          href={article.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-cyan-400 text-sm hover:text-cyan-300 hover:underline mb-8 block"
+        >
+          View on Wikipedia →
+        </a>
 
-      <div className="text-gray-800 leading-relaxed whitespace-pre-wrap text-sm">
-        {article.text}
-      </div>
-    </div>
+        <div className="text-gray-200 leading-relaxed whitespace-pre-wrap text-sm sm:text-base">
+          {article.text}
+        </div>
+      </article>
+    </main>
   );
 }
