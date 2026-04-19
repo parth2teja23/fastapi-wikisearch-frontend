@@ -1,26 +1,57 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5efe3;
+  --foreground: #12263a;
+  --surface: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-heading);
+  --font-mono: var(--font-plex-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-heading), sans-serif;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(28px);
+  opacity: 0.35;
+  animation: drift 14s ease-in-out infinite;
+}
+
+.orb-one {
+  top: -4rem;
+  right: -3rem;
+  height: 13rem;
+  width: 13rem;
+  background: #f97316;
+}
+
+.orb-two {
+  bottom: -4rem;
+  left: -2rem;
+  height: 14rem;
+  width: 14rem;
+  background: #22d3ee;
+  animation-delay: -4s;
+}
+
+@keyframes drift {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-12px) scale(1.06);
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+  }
 }
